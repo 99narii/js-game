@@ -20,6 +20,17 @@
     border: 1px solid #ccc;
     border-radius: 12px;
   }
+
+  @media (max-width: 600px) {
+    canvas {
+      width: 100vw;
+      height: auto;
+      min-width: 100%;
+      position: fixed;
+
+    }
+  }
+  
   
   #subtitle {
     font-size: 20px;
