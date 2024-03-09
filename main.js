@@ -134,31 +134,35 @@ let bgImageLoaded = new Promise((resolve) => {
  * 마우스 이벤트
  */
 canvas.addEventListener("click", function (e) {
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-  
-    if (
-      !gameStarted &&
-      x >= 0 &&
-      x <= canvas.width &&
-      y >= 0 &&
-      y <= canvas.height
-    ) {
-      gameStarted = true;
-      animate();
-    }
-  
-    if (
-      gameOver &&
-      x >= canvas.width / 2 - 50 &&
-      x <= canvas.width / 2 + 50 &&
-      y >= canvas.height / 2 + 50 &&
-      y <= canvas.height / 2 + 100
-    ) {
-      restartGame();
+  if (!gameStarted) {
+    gameStarted = true;
+    animate();
+  } else if (gameOver) {
+    restartGame();
+  }
+});
+    /**
+ * 키보드 이벤트
+ */
+  document.addEventListener("keydown", function (e) {
+    if (e.code === "Space") {
+      triggerJump();
     }
   });
+  
+  // 터치 이벤트에 대한 리스너를 추가
+  document.addEventListener("touchstart", function () {
+    triggerJump();
+  });
+  
+  function triggerJump() {
+    jump = true;
+    jumpSound.play(); // 점프 소리 재생
+    setTimeout(() => {
+      jumpSound.pause(); // 일정 시간 후 오디오 일시 정지
+      jumpSound.currentTime = 0; // 오디오 재생 위치를 시작으로 재설정
+    }, 200); // 200ms 후 오디오 일시 정지
+  }
 
 
 /**
@@ -248,28 +252,6 @@ function animate() {
     requestAnimationFrame(animate);
   }
 
-  /**
- * 키보드 이벤트
- */
-  document.addEventListener("keydown", function (e) {
-    if (e.code === "Space") {
-      triggerJump();
-    }
-  });
-  
-  // 터치 이벤트에 대한 리스너를 추가
-  document.addEventListener("touchstart", function () {
-    triggerJump();
-  });
-  
-  function triggerJump() {
-    jump = true;
-    jumpSound.play(); // 점프 소리 재생
-    setTimeout(() => {
-      jumpSound.pause(); // 일정 시간 후 오디오 일시 정지
-      jumpSound.currentTime = 0; // 오디오 재생 위치를 시작으로 재설정
-    }, 200); // 200ms 후 오디오 일시 정지
-  }
     /**
  * 충돌 체크 함수
  */
