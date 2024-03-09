@@ -9,6 +9,7 @@
     margin: 0;
     padding: 0;
     color: #333;
+    padding: 20px;
   }
   
   /* canvas styling */
@@ -26,7 +27,7 @@
       height: auto;
       min-width: 100%;
       position: fixed;
-
+      
     }
   }
   

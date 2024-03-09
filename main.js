@@ -5,7 +5,7 @@ canvas.height = 500;
 const ctx = canvas.getContext("2d");
 
 let gameStarted = false;
-const BG_MOVING_SPEED = 5;
+const BG_MOVING_SPEED = 3;
 let bgX = 0;
 let scoreText = document.getElementById("score");
 let score = 0;
