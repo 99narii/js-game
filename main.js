@@ -20,8 +20,8 @@ let jump = false; // 점프 여부
 /** 상수 설정 */
 
 /** 고양이 */
-const RTAN_WIDTH = 100;
-const RTAN_HEIGHT = 100;
+const RTAN_WIDTH = 80;
+const RTAN_HEIGHT = 80;
 const RTAN_INITIAL_X_POSITION = 10;
 const RTAN_INITIAL_Y_POSITION = 400;
 
