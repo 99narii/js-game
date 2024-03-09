@@ -251,18 +251,26 @@ function animate() {
   /**
  * 키보드 이벤트
  */
-document.addEventListener("keydown", function (e) {
+  document.addEventListener("keydown", function (e) {
     if (e.code === "Space") {
-      jump = true;
-      jumpSound.play(); // 점프 소리 재생
-      setTimeout(() => {
-        jumpSound.pause(); // 일정 시간 후에 오디오 일시정지
-        jumpSound.currentTime = 0; // 오디오 재생 위치를 시작으로 재설정
-      }, 200); // 200ms 후에 오디오 일시정지
+      triggerJump();
     }
   });
-
-  /**
+  
+  // 터치 이벤트에 대한 리스너를 추가
+  document.addEventListener("touchstart", function () {
+    triggerJump();
+  });
+  
+  function triggerJump() {
+    jump = true;
+    jumpSound.play(); // 점프 소리 재생
+    setTimeout(() => {
+      jumpSound.pause(); // 일정 시간 후 오디오 일시 정지
+      jumpSound.currentTime = 0; // 오디오 재생 위치를 시작으로 재설정
+    }, 200); // 200ms 후 오디오 일시 정지
+  }
+    /**
  * 충돌 체크 함수
  */
 function collision(first, second) {
